@@ -25,3 +25,19 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+@font-face {
+  font-family: 'BlackBox';
+  src: url('./fonts/BlackBox.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Santello';
+  src: url('./fonts/SANTELLO.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+

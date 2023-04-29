@@ -30,11 +30,11 @@ export default function Home() {
       },
       modes: {
         push: {
-            quantity: 4,
+          quantity: 4,
         },
         repulse: {
-            distance: 200,
-            duration: 0.4,
+          distance: 200,
+          duration: 0.4,
         },
       },
     },
@@ -46,7 +46,7 @@ export default function Home() {
         directions: "none",
         enable: true,
         outModes: {
-            default: "bounce",
+          default: "bounce",
         },
         random: false,
         speed: 1,
@@ -80,13 +80,13 @@ export default function Home() {
   // Scroll behavior definition
   function scrollToElement() {
     const element = document.getElementById('bp1');
-    element.scrollIntoView({behavior: 'smooth'});
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 
   // "Generate" button handling function
-  async function generateButtonHandler(){
+  async function generateButtonHandler() {
     fetch(
-      'http://127.0.0.1:8080/generate', 
+      'http://127.0.0.1:8080/generate',
     )
       .then(res => res.json())
       .then(data => setImage(data[0]["data"]))
@@ -94,12 +94,12 @@ export default function Home() {
   }
 
   // "Process raw text to a list of storyline and drop image description text"
-  function parseRawText(raw_test){
+  function parseRawText(raw_test) {
     let texts = raw_test.split("  ")
-    let stories = [] 
-    let images_desc= [] 
-    for (let i = 0; i<texts.length; i++){
-      if (texts[i].includes("Image description:")){
+    let stories = []
+    let images_desc = []
+    for (let i = 0; i < texts.length; i++) {
+      if (texts[i].includes("Image description:")) {
         images_desc.push(texts[i])
       } else stories.push(texts[i])
     }
@@ -108,16 +108,16 @@ export default function Home() {
     return stories, images_desc
   }
 
-  function storyLayout(){
-      return (
-        <div className="flex flex-col bg-grey">
+  function storyLayout() {
+    return (
+      <div className="flex flex-col bg-grey">
 
-        </div>
-      )
+      </div>
+    )
   }
 
   // 
-  const submitContact = async (event) =>{
+  const submitContact = async (event) => {
     event.preventDefault();
     parseRawText(event.target.name.value)
     // console.log(event.target.name.value)
@@ -135,23 +135,33 @@ export default function Home() {
           />
         </div>
         <div children="flex flex-col">
-          <div className='drop-shadow-xl flex flex-col justify-center items-center'>
-            <div className="text-gray-700 text-8xl mt-60">
-              Fablr
-            </div>
-            <div className="text-gray-700 text-3xl pt-10">
-              A New way to make your stories happen
+
+
+          <div className="mt-60">
+            <div className="flex flex-col justify-center items-center">
+
+              <div class="font-santello text-fablr-purple text-9xl">
+                Fablr
+              </div>
+              <div class="font-santello text-fablr-purple text-4xl">
+                A New way to make your stories happen
+              </div>
+
             </div>
           </div>
+
+
+
+
           <div className='drop-shadow-xl flex flex-col justify-center items-center h-full'>
             <div className="flex items-center justify-center w-full">
               <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" className="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stopColor="#f5f5f5"></stop><stop offset="95%" stopColor="#8a5cb5"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,250 0,250 C 111,223.28571428571428 222,196.57142857142858 342,226 C 462,255.42857142857142 590.9999999999999,341 723,342 C 855.0000000000001,343 990,259.42857142857144 1110,230 C 1230,200.57142857142856 1335,225.28571428571428 1440,250 C 1440,250 1440,500 1440,500 Z" stroke="none" strokeWidth="0" fill="url(#gradient)" fillOpacity="1" className="transition-all duration-300 ease-in-out delay-150 path-0"></path></svg>
               <div className="absolute flex flex-col justify-center items-center">
-                <div className="text-3xl mb-5">
+              <div class="font-santello text-fablr-purple text-3xl">
                   Try it out below!
                 </div>
-                <button onClick={scrollToElement} className="animate-bounce">
-                  <AiOutlineDown size={48}/>
+                <button onClick={scrollToElement} className="animate-bounce bg-fablr-purple text-fablr-purple">
+                  <AiOutlineDown size={48} />
                 </button>
               </div>
             </div>
@@ -175,7 +185,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-                
+
       </div>
     </main>
   )

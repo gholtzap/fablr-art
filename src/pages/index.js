@@ -7,8 +7,7 @@ import { loadSlim } from "tsparticles-slim";
 import Particles from "react-tsparticles";
 
 // React icons
-import { AiOutlineDatabase, AiOutlineDown } from 'react-icons/ai';
-import { data } from "autoprefixer";
+import { AiOutlineDown } from 'react-icons/ai';
 
 // Home definition
 export default function Home() {
@@ -123,6 +122,10 @@ export default function Home() {
 
   // API Call
   async function generateButtonHandler() {
+    // Clear the result section
+    setOutput(<></>);
+
+    // Call API endpoint
     fetch(
       'http://127.0.0.1:8080/generate',
     )
@@ -131,7 +134,9 @@ export default function Home() {
       .catch(error => console.log(error));
   }
 
+  // Result updater
   useEffect(() => {
+    // Check if the gptOutput is good
     if (gptOut.length > 0) {
       // Construct the list
       setOutput(

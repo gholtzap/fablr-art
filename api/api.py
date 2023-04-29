@@ -9,6 +9,7 @@ import openai
 # System
 import argparse
 import base64
+import json
 import os
 
 # Load env vars
@@ -65,6 +66,10 @@ def generate():
     # Split the answer into lines
     lines = ans.strip().split('\n')
     
+    print("+=============================+")
+    print(lines)
+    print("+=============================+")
+    
     # Loop through each line in the input text
     for i, line in enumerate(lines):
         # Check if the line is an image description
@@ -114,7 +119,12 @@ def generate():
             # Increment count
             count += 1
                 
-    # Return 
+    # Return
+    for i in images:
+        print(i["paragraph"])
+        print(i["description"])
+        print()
+    print("+=============================+")
     return images
 
 # Flask app run method

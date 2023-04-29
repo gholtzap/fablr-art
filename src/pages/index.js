@@ -107,22 +107,21 @@ export default function Home() {
     if (index % 2 == 0) {
       return (
         <>
-        {textOutput}
-        {imageOutput}
+          {textOutput}
+          {imageOutput}
         </>
       );
     } else {
       return (
         <>
-        {imageOutput}
-        {textOutput}
+          {imageOutput}
+          {textOutput}
         </>
       );
     }
   }
 
-
-    // API Call
+  // API Call
   async function generateButtonHandler() {
     fetch(
       'http://127.0.0.1:8080/generate',
@@ -132,35 +131,16 @@ export default function Home() {
       .catch(error => console.log(error));
   }
 
-  // "Process raw text to a list of storyline and drop image description text"
-  function parseRawText(raw_test){
-    let texts = raw_test.split("  ")
-    let stories = [] 
-    let images_desc= [] 
-    for (let i = 0; i<texts.length; i++){
-      if (texts[i].includes("Image description:")){
-        images_desc.push(texts[i])
-      } else stories.push(texts[i])
-    }
-    // console.log(images_desc)
-    // console.log(stories)
-    return stories, images_desc
-  }
-
-  function storyLayout(){
-      return (
-        <div className="flex flex-col bg-grey">
-
+  useEffect(() => {
+    if (gptOut.length > 0) {
+      // Construct the list
+      setOutput(
+        <div className="grid grid-cols-3 gap-20 w-2/3">
+          {gptOut.map((item, index) => (getRow(item, index)))}
         </div>
       )
-  }
-
-  // 
-  const submitContact = async (event) =>{
-    event.preventDefault();
-    parseRawText(event.target.name.value)
-    // console.log(event.target.name.value)
-  }
+    }
+  }, [gptOut]);
 
   // Render content
   return (
@@ -174,8 +154,6 @@ export default function Home() {
           />
         </div>
         <div children="flex flex-col">
-
-
           <div className="mt-60">
             <div className="flex flex-col justify-center items-center">
 
@@ -185,10 +163,8 @@ export default function Home() {
               <div className="font-santello text-fablr-purple text-4xl">
                 A New way to make your stories happen
               </div>
-
             </div>
           </div>
-
           <div className='drop-shadow-xl flex flex-col justify-center items-center h-full'>
             <div className="flex items-center justify-center w-full">
               <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" className="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stopColor="#f5f5f5"></stop><stop offset="95%" stopColor="#8a5cb5"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,250 0,250 C 111,223.28571428571428 222,196.57142857142858 342,226 C 462,255.42857142857142 590.9999999999999,341 723,342 C 855.0000000000001,343 990,259.42857142857144 1110,230 C 1230,200.57142857142856 1335,225.28571428571428 1440,250 C 1440,250 1440,500 1440,500 Z" stroke="none" strokeWidth="0" fill="url(#gradient)" fillOpacity="1" className="transition-all duration-300 ease-in-out delay-150 path-0"></path></svg>
@@ -213,19 +189,16 @@ export default function Home() {
                 </div>
                 <div className="flex justify-center ">
                   <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-5 px-7 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded">
-                    
-                  Generate
-                    
+                    Generate
                   </button>
                 </div>
               </div>
             </div>
             <div className="flex h-full w-full bg-[#f5f5f5] justify-center p-20">
-                {output}
+              {output}
             </div>
           </div>
         </div>
-                
       </div>
     </main>
   )

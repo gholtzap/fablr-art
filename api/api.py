@@ -83,7 +83,7 @@ def generate():
         parser = argparse.ArgumentParser()
         parser.add_argument("-p", "--prompt", help="Text to image prompt:", default=description)
         parser.add_argument("-n", "--number", help="Number of images generated", default=1)
-        parser.add_argument("-s", "--size", help="Image size: 256, 512 or 1024", default=256)
+        parser.add_argument("-s", "--size", help="Image size: 256, 512 or 1024", default=1024)
 
         # Finalize arguments
         args = parser.parse_args()

@@ -15,6 +15,7 @@ export default function Home() {
 
   // Image declaration
   const [gptOut, setGPTOut] = useState([]);
+  const [output, setOutput] = useState();
 
   // Particle settings 
   const particlesSettings = {
@@ -101,7 +102,7 @@ export default function Home() {
         <img src={`data:image/png;base64,${item["data"]}`} alt="example image" />
       </div>
     );
-    
+
     // Check if the index is even
     if (index % 2 == 0) {
       return (
@@ -132,16 +133,16 @@ export default function Home() {
       .catch(error => console.log(error));
   }
 
-  // useEffect(() => {
-  //   if (gptOut.length > 0) {
-  //     // Construct the list
-  //     setOutput(
-  //       <div className="grid grid-cols-3 gap-20 w-2/3">
-  //         {gptOut.forEach((item, index) => {getRow(item, index)})}
-  //       </div>
-  //     )
-  //   }
-  // }, [gptOut]);
+  useEffect(() => {
+    if (gptOut.length > 0) {
+      // Construct the list
+      setOutput(
+        <div className="grid grid-cols-3 gap-20 w-2/3">
+          {gptOut.map((item, index) => (getRow(item, index)))}
+        </div>
+      )
+    }
+  }, [gptOut]);
 
 
   // Render content
@@ -194,13 +195,10 @@ export default function Home() {
               </div>
             </div>
             <div className="flex h-full w-full bg-[#f5f5f5] justify-center p-20">
-              <div className="grid grid-cols-3 gap-20 w-2/3">
-                {gptOut.length > 0 && gptOut.forEach((item, index) => {getRow(item, index)})}
-              </div>
+                {output}
             </div>
           </div>
         </div>
-                
       </div>
     </main>
   )

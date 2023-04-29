@@ -7,13 +7,14 @@ import { loadSlim } from "tsparticles-slim";
 import Particles from "react-tsparticles";
 
 // React icons
-import { AiOutlineDown } from 'react-icons/ai';
+import { AiOutlineDatabase, AiOutlineDown } from 'react-icons/ai';
+import { data } from "autoprefixer";
 
 // Home definition
 export default function Home() {
 
   // Image declaration
-  const [image, setImage] = useState('');
+  const [gptOut, setGPTOut] = useState([]);
 
   // Particle settings 
   const particlesSettings = {
@@ -83,45 +84,65 @@ export default function Home() {
     element.scrollIntoView({behavior: 'smooth'});
   }
 
+  // Grid Row component 
+  function getRow(item, index) {
+    // Create the paragraph and image sections
+    const textOutput = (
+      <div class="max-w rounded overflow-hidden shadow-lg">
+        <div class="px-10 py-5">
+          <p class="text-gray-700 text-xl">
+            {item["paragraph"]}
+          </p>
+        </div>
+      </div>
+    );
+    const imageOutput = (
+      <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
+        <img src={`data:image/png;base64,${item["data"]}`} alt="example image" />
+      </div>
+    );
+    
+    // Check if the index is even
+    if (index % 2 == 0) {
+      return (
+        <div>
+          {textOutput}
+          {imageOutput}
+        </div> 
+      );
+    } else {
+      return (
+        <div>
+          {imageOutput}
+          {textOutput}
+        </div> 
+      );
+    }
+  }
+
   // "Generate" button handling function
   async function generateButtonHandler(){
+
+    // API Call
     fetch(
       'http://127.0.0.1:8080/generate', 
     )
       .then(res => res.json())
-      .then(data => setImage(data[0]["data"]))
+      .then(data => setGPTOut(data))
       .catch(error => console.log(error));
   }
 
-  // "Process raw text to a list of storyline and drop image description text"
-  function parseRawText(raw_test){
-    let texts = raw_test.split("  ")
-    let stories = [] 
-    let images_desc= [] 
-    for (let i = 0; i<texts.length; i++){
-      if (texts[i].includes("Image description:")){
-        images_desc.push(texts[i])
-      } else stories.push(texts[i])
-    }
-    // console.log(images_desc)
-    // console.log(stories)
-    return stories, images_desc
-  }
+  // useEffect(() => {
+  //   if (gptOut.length > 0) {
+  //     // Construct the list
+  //     setOutput(
+  //       <div className="grid grid-cols-3 gap-20 w-2/3">
+  //         {gptOut.forEach((item, index) => {getRow(item, index)})}
+  //       </div>
+  //     )
+  //   }
+  // }, [gptOut]);
 
-  function storyLayout(){
-      return (
-        <div className="flex flex-col bg-grey">
-
-        </div>
-      )
-  }
-
-  // 
-  const submitContact = async (event) =>{
-    event.preventDefault();
-    parseRawText(event.target.name.value)
-    // console.log(event.target.name.value)
-  }
 
   // Render content
   return (
@@ -156,7 +177,7 @@ export default function Home() {
               </div>
             </div>
             <div className="bg-[#f5f5f5] h-full w-full flex justify-center py-10">
-              <form className="w-full max-w-3xl" onSubmit={submitContact}>
+              <div className="w-full max-w-3xl">
                 <div className='flex justify-center text-gray-700 py-6' id="bp1">
                   <p className='text-3xl'>Enter a storyline</p>
                 </div>
@@ -169,38 +190,13 @@ export default function Home() {
                   <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-white font-bold py-2 px-4 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded">
                     Generate
                   </button>
-                  <img src={`data:image/png;base64,${image}`} alt="example image" />
                 </div>
-              </form>
+              </div>
             </div>
             <div className="flex h-full w-full bg-[#f5f5f5] justify-center p-20">
-                <div className="grid grid-cols-3 gap-20 w-2/3">
-
-                  <div class="max-w rounded overflow-hidden shadow-lg">
-                    <div class="px-10 py-5">
-                      <p class="text-gray-700 text-xl">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil. 
-                      </p>
-                    </div>
-                  </div>
-                  <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
-                    <img class="w-full object-fill h-full" src={`https://picsum.photos/id/237/536/536`} alt="example image" />
-                  </div>
-
-                  <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
-                    <img class="w-full object-fill h-full" src={`https://picsum.photos/id/1060/536/536?blur=2`} alt="example image" />
-                  </div>
-
-                  <div class="max-w rounded overflow-hidden shadow-lg">
-                    <div class="px-10 py-5">
-                      <p class="text-gray-700 text-xl">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                      </p>
-                    </div>
-                  </div>
-                  
-
-                </div>
+              <div className="grid grid-cols-3 gap-20 w-2/3">
+                {gptOut.length > 0 && gptOut.forEach((item, index) => {getRow(item, index)})}
+              </div>
             </div>
           </div>
         </div>

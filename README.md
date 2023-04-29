@@ -1,1 +1,1 @@
-![](https://cdn.discordapp.com/attachments/1097944377109774346/1101344384898826296/fablr_logo.png)
+![](https://cdn.discordapp.com/attachments/1097944377109774346/1101344385762861077/fablr_logo_withtitle.png)

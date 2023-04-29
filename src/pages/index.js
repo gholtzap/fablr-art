@@ -179,24 +179,21 @@ export default function Home() {
           <div className="mt-60">
             <div className="flex flex-col justify-center items-center">
 
-              <div class="font-santello text-fablr-purple text-9xl">
+              <div className="font-santello text-fablr-purple text-9xl">
                 Fablr
               </div>
-              <div class="font-santello text-fablr-purple text-4xl">
+              <div className="font-santello text-fablr-purple text-4xl">
                 A New way to make your stories happen
               </div>
 
             </div>
           </div>
 
-
-
-
           <div className='drop-shadow-xl flex flex-col justify-center items-center h-full'>
             <div className="flex items-center justify-center w-full">
               <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" className="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stopColor="#f5f5f5"></stop><stop offset="95%" stopColor="#8a5cb5"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,250 0,250 C 111,223.28571428571428 222,196.57142857142858 342,226 C 462,255.42857142857142 590.9999999999999,341 723,342 C 855.0000000000001,343 990,259.42857142857144 1110,230 C 1230,200.57142857142856 1335,225.28571428571428 1440,250 C 1440,250 1440,500 1440,500 Z" stroke="none" strokeWidth="0" fill="url(#gradient)" fillOpacity="1" className="transition-all duration-300 ease-in-out delay-150 path-0"></path></svg>
               <div className="absolute flex flex-col justify-center items-center">
-                <div class="font-santello text-fablr-purple text-3xl">
+                <div className="font-santello text-fablr-purple text-3xl">
                   Try it out below!
                 </div>
                 <button onClick={scrollToElement} className="animate-bounce bg-fablr-purple text-fablr-purple">

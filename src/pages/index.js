@@ -99,24 +99,24 @@ export default function Home() {
     );
     const imageOutput = (
       <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
-        <img src={`data:image/png;base64,${item["data"]}`} alt="example image" />
+        <img class="w-full object-fill h-full" src={`data:image/png;base64,${item["data"]}`} alt="example image" />
       </div>
     );
 
     // Check if the index is even
     if (index % 2 == 0) {
       return (
-        <div>
-          {textOutput}
-          {imageOutput}
-        </div> 
+        <>
+        {textOutput}
+        {imageOutput}
+        </>
       );
     } else {
       return (
-        <div>
-          {imageOutput}
-          {textOutput}
-        </div> 
+        <>
+        {imageOutput}
+        {textOutput}
+        </>
       );
     }
   }

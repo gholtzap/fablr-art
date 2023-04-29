@@ -155,7 +155,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="bg-[#f5f5f5] h-screen w-full flex justify-center py-10">
+            <div className="bg-[#f5f5f5] h-full w-full flex justify-center py-10">
               <form className="w-full max-w-3xl" onSubmit={submitContact}>
                 <div className='flex justify-center text-gray-700 py-6' id="bp1">
                   <p className='text-3xl'>Enter a storyline</p>
@@ -172,6 +172,35 @@ export default function Home() {
                   <img src={`data:image/png;base64,${image}`} alt="example image" />
                 </div>
               </form>
+            </div>
+            <div className="flex h-full w-full bg-[#f5f5f5] justify-center p-20">
+                <div className="grid grid-cols-3 gap-20 w-2/3">
+
+                  <div class="max-w rounded overflow-hidden shadow-lg">
+                    <div class="px-10 py-5">
+                      <p class="text-gray-700 text-xl">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil. 
+                      </p>
+                    </div>
+                  </div>
+                  <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
+                    <img class="w-full object-fill h-full" src={`https://picsum.photos/id/237/536/536`} alt="example image" />
+                  </div>
+
+                  <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
+                    <img class="w-full object-fill h-full" src={`https://picsum.photos/id/1060/536/536?blur=2`} alt="example image" />
+                  </div>
+
+                  <div class="max-w rounded overflow-hidden shadow-lg">
+                    <div class="px-10 py-5">
+                      <p class="text-gray-700 text-xl">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                      </p>
+                    </div>
+                  </div>
+                  
+
+                </div>
             </div>
           </div>
         </div>

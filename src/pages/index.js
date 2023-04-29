@@ -207,16 +207,18 @@ export default function Home() {
             <div className="bg-[#f5f5f5] h-full w-full flex justify-center py-10">
               <div className="w-full max-w-3xl">
                 <div className='flex justify-center text-gray-700 py-6' id="bp1">
-                  <p className='text-3xl'>Enter a storyline</p>
+                  <p className='text-3xl font-santello text-fablr-purple'> Enter a storyline ⤵</p>
                 </div>
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-full">
-                    <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-300" id="inline-full-name" name="name" type="text"></input>
+                    <input className="bg-gray-200 font-santello appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-300" id="inline-full-name" name="name" type="text"></input>
                   </div>
                 </div>
                 <div className="flex justify-center ">
-                  <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-white font-bold py-2 px-4 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded">
-                    Generate
+                  <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-5 px-7 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded">
+                    
+                  Generate
+                    
                   </button>
                 </div>
               </div>

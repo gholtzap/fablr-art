@@ -9,6 +9,8 @@ import Particles from "react-tsparticles";
 // React icons
 import { AiOutlineDown } from 'react-icons/ai';
 import { VscLoading } from 'react-icons/vsc';
+import { BsBook } from 'react-icons/bs';
+import { FaHourglassHalf } from 'react-icons/fa';
 
 // Home definition
 export default function Home() {
@@ -16,7 +18,15 @@ export default function Home() {
   // useState declaration
   const [gptOut, setGPTOut] = useState([]);
   const [output, setOutput] = useState(
-    <div style={{ height: "500px" }}></div>
+    <div className="flex flex-col justify-center items-center h-[500px] text-fablr-purple ">
+      <BsBook size={48}/>
+      <div className="font-santello text-xl drop-shadow-md mt-3">
+        Nothing to show...
+      </div>
+      <div className="font-santello text-3xl drop-shadow-md mb-40">
+        Write a story!
+      </div>
+    </div>
   );
   const [inputButton, setButton] = useState(
     <button type="submit" onClick={generateButtonHandler} className="drop-shadow-md bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-4 px-5 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded-lg">
@@ -130,7 +140,17 @@ export default function Home() {
   // API Call
   async function generateButtonHandler() {
     // Clear the result section
-    setOutput(<div style={{ height: "500px" }}></div>);
+    setOutput(
+      <div className="flex flex-col justify-center items-center h-[500px] text-fablr-purple ">
+        <FaHourglassHalf size={48}/>
+        <div className="font-santello text-xl drop-shadow-md mt-3">
+          Generating...
+        </div>
+        <div className="font-santello text-3xl drop-shadow-md mb-40">
+          Hold on tight!
+        </div>
+      </div>
+    );
 
     // Set the button
     setButton(

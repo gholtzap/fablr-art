@@ -8,6 +8,15 @@
 
 # Fablr Art: Visual Novels with GPT-3.5 and DALL-E
 
+## Authors 
+
+- [Ben Herrera](https://github.com/BenjaminHerrera)
+- [Gavin Holtzapple](https://github.com/gholtzap)
+- [Nick Nguyen](https://github.com/niekky)
+- [Keval Shah](https://github.com/kevalshah14)
+
+## Description
+
 #### Fablr Art is an innovative project that converts short stories into visual novels using OpenAI's GPT-3.5 and DALL-E. This project aims to provide an interactive and immersive experience for users, making storytelling more engaging and visually appealing.
 
 
@@ -36,18 +45,15 @@ These instructions will get you a copy of the project up and running on your loc
 2. Install the dependencies:
 ```cd fablr-art``` 
 ```npm install```
-3. Add your OpenAI API key:
-
-
-
-Create a `.env` file in the project's root directory and add your OpenAI API key:
+3. Add your OpenAI API key. Create a `.env` file in the project's root directory and add your OpenAI API key:
 ```OPENAI_API_KEY=your_api_key_here```
-
 4. Start the development server:
 ```npm run dev```
-
-
 5. Open your browser and navigate to `http://localhost:3000`.
+6. Download Flask
+```pip install flask```
+7. Run api server
+```python api/api.py```
 
 ## Usage
 

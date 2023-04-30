@@ -9,6 +9,7 @@ import openai
 # System
 import argparse
 import base64
+import json
 import os
 import re
 
@@ -132,7 +133,12 @@ def generate():
             # Increment count
             count += 1
                 
-    # Return 
+    # Return
+    for i in images:
+        print(i["paragraph"])
+        print(i["description"])
+        print()
+    print("+=============================+")
     return images
 
 # Flask app run method

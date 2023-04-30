@@ -185,7 +185,7 @@ export default function Home() {
 
   // Render content
   return (
-    <main className="h-screen bg-gradient-to-b scrollbar-thin scrollbar-thumb-[#8a5cb5] scrollbar-track-gray-300 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+    <main>
       <div className="relative">
         <div className="absolute">
           <Particles

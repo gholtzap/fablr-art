@@ -46,7 +46,7 @@ def generate():
     # Get the prompt
     prompt = request.json['prompt']
     
-    print(prompt)
+    print("USER PROMPT: ", prompt)
     
     # Variable prepping
     conversation = []
@@ -54,10 +54,11 @@ def generate():
         {
             'role': 'system', 
             'content': 
-                f'''Give a short story with a description of an image that would suit each paragraph. The following is the prompt. {prompt}
+                f'''Give a short story with a description of an image that would suit each paragraph. The following is the prompt. 
                 Format = 
                 Image Description:
-                Paragraph:'''
+                Paragraph:
+                {prompt}'''
         }
     )
     conversation = ChatGPT_conversation(conversation)

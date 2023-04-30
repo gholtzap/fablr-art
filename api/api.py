@@ -107,9 +107,6 @@ def generate():
         for i in range(len(res['data'])):
             # Get the B64 JSON data of the image
             b64 = res['data'][i]['b64_json']
-            
-            # Create the file name
-            filename = f"image_{count}.png"
 
             # Add the file name, description, and paragraph to the images list
             images.append({'paragraph': paragraphs[index], 'description': description, 'data': b64})

@@ -8,6 +8,7 @@ import Particles from "react-tsparticles";
 
 // React icons
 import { AiOutlineDown } from 'react-icons/ai';
+import { VscLoading } from 'react-icons/vsc';
 
 // Home definition
 export default function Home() {
@@ -15,6 +16,11 @@ export default function Home() {
   // Image declaration
   const [gptOut, setGPTOut] = useState([]);
   const [output, setOutput] = useState();
+  const [inputButton, setButton] = useState(
+    <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-4 px-5 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded-lg">
+      Generate
+    </button>
+  );
 
   // Particle settings 
   const particlesSettings = {
@@ -72,7 +78,6 @@ export default function Home() {
     },
     detectRetina: true,
   }
-
   // Particle engine initialization
   const particlesInit = useCallback(async engine => {
     await loadSlim(engine);
@@ -125,6 +130,16 @@ export default function Home() {
     // Clear the result section
     setOutput(<></>);
 
+    // Set the button
+    setButton(
+      <button disabled type="submit" className="flex bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-4 px-5 border-b-4 border-[#8B008B] rounded-lg">
+        <div class="animate-spin h-5 w-5 mr-3 ...">
+          <VscLoading/>
+        </div>
+        Processing... 
+      </button>
+    );
+
     // Call API endpoint
     fetch(
       'http://127.0.0.1:8080/generate',
@@ -150,6 +165,13 @@ export default function Home() {
   useEffect(() => {
     // Check if the gptOutput is good
     if (gptOut.length > 0) {
+      // Set the button
+      setButton(
+        <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-4 px-5 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded-lg">
+          Generate Again
+        </button>
+      )
+
       // Construct the list
       setOutput(
         <div className="grid grid-cols-3 gap-20 w-2/3">
@@ -173,7 +195,6 @@ export default function Home() {
         <div children="flex flex-col">
           <div className="mt-60">
             <div className="flex flex-col justify-center items-center">
-
               <div className="font-santello text-fablr-purple text-9xl">
                 Fablr
               </div>
@@ -205,9 +226,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex justify-center ">
-                  <button type="submit" onClick={generateButtonHandler} className="bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-5 px-7 border-b-4 border-[#8B008B] hover:border-[#8a5cb5] rounded">
-                    Generate
-                  </button>
+                  {inputButton}
                 </div>
               </div>
             </div>

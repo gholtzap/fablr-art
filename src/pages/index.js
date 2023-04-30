@@ -95,17 +95,17 @@ export default function Home() {
   function getRow(item, index) {
     // Create the paragraph and image sections
     const textOutput = (
-      <div class="max-w rounded overflow-hidden shadow-lg">
-        <div class="px-10 py-5">
-          <p class="text-gray-700 text-xl">
+      <div className="max-w rounded overflow-hidden shadow-lg">
+        <div className="px-10 py-5">
+          <p className="text-gray-700 text-xl">
             {item["paragraph"]}
           </p>
         </div>
       </div>
     );
     const imageOutput = (
-      <div class="max-w rounded overflow-hidden shadow-lg col-span-2">
-        <img class="w-full object-fill h-full" src={`data:image/png;base64,${item["data"]}`} alt="example image" />
+      <div className="max-w rounded overflow-hidden shadow-lg col-span-2">
+        <img className="w-full object-fill h-full" src={`data:image/png;base64,${item["data"]}`} alt="example image" />
       </div>
     );
 
@@ -135,7 +135,7 @@ export default function Home() {
     // Set the button
     setButton(
       <button disabled type="submit" className="drop-shadow-md flex bg-[#8a5cb5] hover:bg-[#BA55D3] text-xl text-white font-santello py-4 px-5 border-b-4 border-[#8B008B] rounded-lg">
-        <div class="animate-spin h-5 w-5 mr-3 ...">
+        <div className="animate-spin h-5 w-5 mr-3 ...">
           <VscLoading/>
         </div>
         Processing... 
@@ -185,7 +185,7 @@ export default function Home() {
 
   // Render content
   return (
-    <main className="h-screen bg-gradient-to-b">
+    <main className="h-screen bg-gradient-to-b scrollbar-thin scrollbar-thumb-[#8a5cb5] scrollbar-track-gray-300 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <div className="relative">
         <div className="absolute">
           <Particles
@@ -207,7 +207,7 @@ export default function Home() {
           </div>
           <div className='drop-shadow-xl flex flex-col justify-center items-center h-full'>
             <div className="flex items-center justify-center w-full">
-              <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 590" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stop-color="#f5f5f5"></stop><stop offset="95%" stop-color="#8a5cb5"></stop></linearGradient></defs><path d="M 0,600 C 0,600 0,200 0,200 C 176.80000000000007,179.73333333333335 353.60000000000014,159.46666666666667 509,171 C 664.3999999999999,182.53333333333333 798.3999999999999,225.86666666666667 950,236 C 1101.6000000000001,246.13333333333333 1270.8000000000002,223.06666666666666 1440,200 C 1440,200 1440,600 1440,600 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0"></path><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stop-color="#f5f5f5"></stop><stop offset="95%" stop-color="#8a5cb5"></stop></linearGradient></defs><path d="M 0,600 C 0,600 0,400 0,400 C 152.53333333333336,384.1333333333333 305.0666666666667,368.2666666666667 469,353 C 632.9333333333333,337.7333333333333 808.2666666666667,323.06666666666666 972,331 C 1135.7333333333333,338.93333333333334 1287.8666666666668,369.4666666666667 1440,400 C 1440,400 1440,600 1440,600 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1"></path></svg>
+              <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 590" xmlns="http://www.w3.org/2000/svg" className="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stopColor="#f5f5f5"></stop><stop offset="95%" stopColor="#8a5cb5"></stop></linearGradient></defs><path d="M 0,600 C 0,600 0,200 0,200 C 176.80000000000007,179.73333333333335 353.60000000000014,159.46666666666667 509,171 C 664.3999999999999,182.53333333333333 798.3999999999999,225.86666666666667 950,236 C 1101.6000000000001,246.13333333333333 1270.8000000000002,223.06666666666666 1440,200 C 1440,200 1440,600 1440,600 Z" stroke="none" strokeWidth="0" fill="url(#gradient)" fillOpacity="0.53" className="transition-all duration-300 ease-in-out delay-150 path-0"></path><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stopColor="#f5f5f5"></stop><stop offset="95%" stopColor="#8a5cb5"></stop></linearGradient></defs><path d="M 0,600 C 0,600 0,400 0,400 C 152.53333333333336,384.1333333333333 305.0666666666667,368.2666666666667 469,353 C 632.9333333333333,337.7333333333333 808.2666666666667,323.06666666666666 972,331 C 1135.7333333333333,338.93333333333334 1287.8666666666668,369.4666666666667 1440,400 C 1440,400 1440,600 1440,600 Z" stroke="none" strokeWidth="0" fill="url(#gradient)" fillOpacity="1" className="transition-all duration-300 ease-in-out delay-150 path-1"></path></svg>
               {/* <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" className="transition duration-300 ease-in-out delay-150"><defs><linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%"><stop offset="5%" stopColor="#f5f5f5"></stop><stop offset="95%" stopColor="#8a5cb5"></stop></linearGradient></defs><path d="M 0,500 C 0,500 0,250 0,250 C 111,223.28571428571428 222,196.57142857142858 342,226 C 462,255.42857142857142 590.9999999999999,341 723,342 C 855.0000000000001,343 990,259.42857142857144 1110,230 C 1230,200.57142857142856 1335,225.28571428571428 1440,250 C 1440,250 1440,500 1440,500 Z" stroke="none" strokeWidth="0" fill="url(#gradient)" fillOpacity="1" className="transition-all duration-300 ease-in-out delay-150 path-0"></path></svg> */}
               <div className="absolute flex flex-col justify-center items-center mb-10">
                 <div className=" drop-shadow-md font-santello text-fablr-purple-dark text-3xl">

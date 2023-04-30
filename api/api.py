@@ -61,9 +61,11 @@ def generate():
 
     raw_contents = conversation[1]["content"]
     print("RAW: ",conversation)
+    print()
 
     split_contents = re.split('\n|\n\n', raw_contents)
-    print(split_contents)
+    print("Contents: ", split_contents)
+    print()
     # Create empty lists for image descriptions, paragraphs, and images
     image_descriptions = []
     paragraphs = []
@@ -82,7 +84,9 @@ def generate():
     #         # Append the paragraph to the list
     #         paragraphs.append(line[len('Paragraph:'):].strip())
 
-    for i, line in enumerate(lines):
+    for i, line in enumerate(split_contents):
+        if line=="":
+            pass
         # Check if the line is an image description
         if "Image Description:" in line:
             # Append the image description to the list
@@ -133,11 +137,17 @@ def generate():
             # Increment count
             count += 1
                 
+    print("IMAGE: ", image_descriptions)
+    print()
+    print("TEXT: ", paragraphs)
+    print()
+    
+    
     # Return
-    for i in images:
-        print(i["paragraph"])
-        print(i["description"])
-        print()
+    # for i in images:
+    #     print(i["paragraph"])
+    #     print(i["description"])
+    #     print()
     print("+=============================+")
     return images
 

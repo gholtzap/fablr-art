@@ -8,7 +8,9 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        'fablr-purple': '#8a5cb5', 
+        'fablr-purple': '#8a5cb5',
+        'fablr-purple-dark': '#6b24ad',
+        'fablr-white': '#f5f5f5' 
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

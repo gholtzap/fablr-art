@@ -46,7 +46,7 @@ def generate():
     # Get the prompt
     prompt = request.json['prompt']
     
-    print(prompt)
+    print("USER PROMPT: ", prompt)
     
     # Variable prepping
     conversation = []
@@ -54,17 +54,22 @@ def generate():
         {
             'role': 'system', 
             'content': 
-                f'''Give a short story with a description of an image that would suit each paragraph. The following is the prompt. {prompt}
+                f'''Give a short story with a description of an image that would suit each paragraph. The following is the prompt. 
                 Format = 
                 Image Description:
-                Paragraph:'''
+                Paragraph:
+                {prompt}'''
         }
     )
     conversation = ChatGPT_conversation(conversation)
     ans = ('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
     raw_contents = conversation[1]["content"]
+    print("RAW: ",conversation)
+    print()
+
     split_contents = re.split('\n|\n\n', raw_contents)
-    
+    print("Contents: ", split_contents)
+    print()
     # Create empty lists for image descriptions, paragraphs, and images
     image_descriptions = []
     paragraphs = []
@@ -73,7 +78,9 @@ def generate():
     # Split the answer into lines
     lines = ans.strip().split('\n')
 
-    for i, line in enumerate(lines):
+    for i, line in enumerate(split_contents):
+        if line=="":
+            pass
         # Check if the line is an image description
         if "Image Description:" in line:
             # Append the image description to the list
@@ -113,7 +120,19 @@ def generate():
             
             # Increment count
             count += 1
-
+                
+    print("IMAGE: ", image_descriptions)
+    print()
+    print("TEXT: ", paragraphs)
+    print()
+    
+    
+    # Return
+    # for i in images:
+    #     print(i["paragraph"])
+    #     print(i["description"])
+    #     print()
+    print("+=============================+")
     return images
 
 # Flask app run method

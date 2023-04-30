@@ -146,8 +146,8 @@ export default function Home() {
       {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(
           {
@@ -222,9 +222,17 @@ export default function Home() {
                 </div>
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-full">
-                    <input className="bg-gray-200 font-santello appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-300" id="prompt" name="name" type="text"></input>
+                    <textarea
+                      className="bg-gray-200 font-santello appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-300"
+                      id="inline-full-name"
+                      name="name"
+                      rows="3" 
+                      style={{ resize: 'vertical' }} 
+                    ></textarea>
                   </div>
                 </div>
+
+
                 <div className="flex justify-center ">
                   {inputButton}
                 </div>

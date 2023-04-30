@@ -10,6 +10,7 @@ import openai
 import argparse
 import base64
 import os
+import re
 
 # Load env vars
 load_dotenv()
@@ -57,6 +58,11 @@ def generate():
     conversation = ChatGPT_conversation(conversation)
     ans = ('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
 
+    raw_contents = conversation[1]["content"]
+    print("RAW: ",conversation)
+
+    split_contents = re.split('\n|\n\n', raw_contents)
+    print(split_contents)
     # Create empty lists for image descriptions, paragraphs, and images
     image_descriptions = []
     paragraphs = []
@@ -64,22 +70,30 @@ def generate():
 
     # Split the answer into lines
     lines = ans.strip().split('\n')
-    
-    print("+=============================+")
-    print(lines)
-    print("+=============================+")
-    
     # Loop through each line in the input text
+    # for i, line in enumerate(lines):
+    #     # Check if the line is an image description
+    #     if line.startswith('Image Description:'):
+    #         # Append the image description to the list
+    #         image_descriptions.append(line[len('Image Description:'):].strip())
+    #     # Check if the line is a paragraph
+    #     elif line.startswith('Paragraph:'):
+    #         # Append the paragraph to the list
+    #         paragraphs.append(line[len('Paragraph:'):].strip())
+
     for i, line in enumerate(lines):
         # Check if the line is an image description
-        if line.startswith('Image Description:'):
+        if "Image Description:" in line:
             # Append the image description to the list
             image_descriptions.append(line[len('Image Description:'):].strip())
         # Check if the line is a paragraph
-        elif line.startswith('Paragraph:'):
+        elif "Paragraph:" in line:
             # Append the paragraph to the list
             paragraphs.append(line[len('Paragraph:'):].strip())
     
+    # print("IMAGE: ", image_descriptions)
+    # print("PARAGRAPH: ", paragraphs)
+
     # Generate images 
     count = 1
     for index, description in enumerate(image_descriptions):

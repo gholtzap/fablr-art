@@ -128,6 +128,18 @@ export default function Home() {
     // Call API endpoint
     fetch(
       'http://127.0.0.1:8080/generate',
+      {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          {
+            "prompt": document.getElementById('prompt').value,
+          }
+        ),
+      }
     )
       .then(res => res.json())
       .then(data => setGPTOut(data))
@@ -189,7 +201,7 @@ export default function Home() {
                 </div>
                 <div className="md:flex md:items-center mb-6">
                   <div className="md:w-full">
-                    <input className="bg-gray-200 font-santello appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-300" id="inline-full-name" name="name" type="text"></input>
+                    <input className="bg-gray-200 font-santello appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-300" id="prompt" name="name" type="text"></input>
                   </div>
                 </div>
                 <div className="flex justify-center ">

@@ -1,5 +1,5 @@
 # Flask
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 
@@ -9,7 +9,6 @@ import openai
 # System
 import argparse
 import base64
-import json
 import os
 import re
 
@@ -39,10 +38,15 @@ def ChatGPT_conversation(conversation):
     return conversation
 
 # GET - Image and Story generator
-@app.route('/generate', methods=['GET'])
+@app.route('/generate', methods=['POST'])
 def generate():
     # Print information
     print("Initializing Call")
+    
+    # Get the prompt
+    prompt = request.json['prompt']
+    
+    print(prompt)
     
     # Variable prepping
     conversation = []
@@ -50,7 +54,7 @@ def generate():
         {
             'role': 'system', 
             'content': 
-                '''Give a short story with a description of an image that would suit each paragraph. Make the whole story by yourself.
+                f'''Give a short story with a description of an image that would suit each paragraph. The following is the prompt. {prompt}
                 Format = 
                 Image Description:
                 Paragraph:'''
@@ -58,7 +62,6 @@ def generate():
     )
     conversation = ChatGPT_conversation(conversation)
     ans = ('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
-
     raw_contents = conversation[1]["content"]
     print("RAW: ",conversation)
     print()
@@ -73,16 +76,6 @@ def generate():
 
     # Split the answer into lines
     lines = ans.strip().split('\n')
-    # Loop through each line in the input text
-    # for i, line in enumerate(lines):
-    #     # Check if the line is an image description
-    #     if line.startswith('Image Description:'):
-    #         # Append the image description to the list
-    #         image_descriptions.append(line[len('Image Description:'):].strip())
-    #     # Check if the line is a paragraph
-    #     elif line.startswith('Paragraph:'):
-    #         # Append the paragraph to the list
-    #         paragraphs.append(line[len('Paragraph:'):].strip())
 
     for i, line in enumerate(split_contents):
         if line=="":
@@ -95,9 +88,6 @@ def generate():
         elif "Paragraph:" in line:
             # Append the paragraph to the list
             paragraphs.append(line[len('Paragraph:'):].strip())
-    
-    # print("IMAGE: ", image_descriptions)
-    # print("PARAGRAPH: ", paragraphs)
 
     # Generate images 
     count = 1
@@ -126,10 +116,6 @@ def generate():
             
             # Create the file name
             filename = f"image_{count}.png"
-            
-            # Build the image
-            with open(filename, 'wb') as f:
-                f.write(base64.urlsafe_b64decode(b64))
 
             # Add the file name, description, and paragraph to the images list
             images.append({'paragraph': paragraphs[index], 'description': description, 'data': b64})

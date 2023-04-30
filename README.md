@@ -8,6 +8,9 @@
 
 # Fablr Art: Visual Novels with GPT-3.5 and DALL-E
 Demo: https://youtu.be/OWjSk8hNwHk
+
+<br>
+
 Presentation: https://youtu.be/jjjQj8aHSeo
 ## Authors 
 
